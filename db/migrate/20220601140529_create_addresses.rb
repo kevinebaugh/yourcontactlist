@@ -8,7 +8,6 @@ class CreateAddresses < ActiveRecord::Migration[6.1]
       t.string  :postal_code
       t.string  :country
       t.integer :household_id
-      t.integer :people_count
 
       t.timestamps
     end

@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2022_06_02_004423) do
     t.string "postal_code"
     t.string "country"
     t.integer "household_id"
-    t.integer "people_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
