@@ -4,5 +4,5 @@ class Person < ApplicationRecord
   belongs_to :household, counter_cache: true
   has_one :address, through: :household
 
-  validates :email_address, presence: true, uniqueness: true
+  validates :email_address, presence: true, uniqueness: { case_sensitive: false }
 end
