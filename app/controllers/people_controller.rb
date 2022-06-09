@@ -4,16 +4,19 @@ class PeopleController < ApplicationController
       return render json: {errors: ["passwords must match"]}, status: :unprocessable_entity
     end
 
-    person = Person.create(
+    person = Person.create!(
       email_address: params[:email_address],
       name: params[:name],
       household_id: params[:household_id],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    # session[:person_id] = person.id
+
+    session[:person_id] = person.id
 
     render json: person, status: :created
+  rescue => e
+    render json: {error: e}, status: :unprocessable_entity
   end
 
   def show
