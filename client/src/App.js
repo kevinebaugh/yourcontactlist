@@ -3,7 +3,7 @@ import './App.css';
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [person, setPerson] = useState(null);
   const [name, setName] = useState("");
   const [email_address, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +16,7 @@ function App() {
         if (response.ok) {
           response.json()
           .then(data => {
-            setUser(data.email_address)
+            setPerson(data.email_address)
           })
         }
       })
@@ -40,14 +40,14 @@ function App() {
     }).then(response => response.json())
       .then(data => {
         console.log("data", data)
-        setUser(data.email_address)
+        setPerson(data.email_address)
       })
   }
 
   return (
     <>
-      {user ? (
-        <h1>Hello, {user}!</h1>
+      {person ? (
+        <h1>Hello, {person}!</h1>
       ) : (
         <>
           <h1>Sign up!</h1>
