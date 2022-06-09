@@ -123,7 +123,7 @@ function App() {
           />
 
 
-          {followedHouseholds ? (
+          {followedHouseholds.length > 0 ? (
             <>
               <h2>Your address book:</h2>
               <ul>
