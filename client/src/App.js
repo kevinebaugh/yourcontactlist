@@ -17,6 +17,8 @@ function App() {
   const [postal_code, setPostalCode] = useState(null)
   const [country, setCountry] = useState(null)
 
+  const [followedHouseholds, setFollowedHouseholds] = useState([])
+
   useEffect(() => {
     fetch("/me")
       .then(response => {
@@ -34,6 +36,7 @@ function App() {
               setState(data.address.state)
               setPostalCode(data.address.postal_code)
               setCountry(data.address.country)
+              setFollowedHouseholds(data.followings)
             }
           })
         }
@@ -119,7 +122,21 @@ function App() {
             onChange={(e) => setCountry(e.target.value)}
           />
 
-          <h2>Your address book:</h2>
+
+          {followedHouseholds ? (
+            <>
+              <h2>Your address book:</h2>
+              <ul>
+                {followedHouseholds.map((household) =>
+                  <>
+                    <li>{household.name}</li>
+                  </>
+                )}
+              </ul>
+            </>
+          ) : (
+            <h3>Your household doesn't currently follow any other households.</h3>
+          )}
 
         </>
       ) : (
