@@ -17,6 +17,7 @@ function App() {
   const [postal_code, setPostalCode] = useState(null)
   const [country, setCountry] = useState(null)
 
+  const [allHouseholds, setAllHouseholds] = useState([])
   const [followedHouseholds, setFollowedHouseholds] = useState([])
 
   useEffect(() => {
@@ -41,9 +42,16 @@ function App() {
           })
         }
       })
+
+    fetch('/households')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        setAllHouseholds(data)
+      })
   }, []);
 
-  function handleSubmit(e) {
+  function handleSignup(e) {
     e.preventDefault()
 
     fetch("/signup", {
@@ -70,6 +78,29 @@ function App() {
           setPostalCode(data.address.postal_code)
           setCountry(data.address.country)
         }
+      })
+  }
+
+  function handleNewFollow(e) {
+    e.preventDefault()
+
+    console.log(e.target.id)
+
+    const household_id_to_follow = e.target.id.replace("household_id_", "")
+
+    fetch('/update_follows', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        household_ids_to_follow: household_id_to_follow
+      })
+    }).then(response => response.json())
+      .then(data => {
+        setFollowedHouseholds(data)
+
+        console.log("data", data)
       })
   }
 
@@ -138,11 +169,24 @@ function App() {
             <h3>Your household doesn't currently follow any other households.</h3>
           )}
 
+          {allHouseholds.length > 0 ? (
+            <>
+              <h2>All households:</h2>
+                {allHouseholds.map((household) =>
+                  <>
+                    <form id={`household_id_${household.id}`} onSubmit={handleNewFollow}>
+                      <button type="submit">Follow the {household.name} household</button>
+                    </form>
+                  </>
+                )}
+            </>
+          ) : null }
+
         </>
       ) : (
         <>
           <h1>Sign up!</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignup}>
             <label htmlFor="name">Name</label>
             <input
               type="text"

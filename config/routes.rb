@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # post "/login", to: "sessions#create"
   get "/me", to: "people#show"
 
-  resources :households, only: [:index, :show]
+  post "/update_follows", to: "follows#update"
+
+  get "/households", to: "households#index"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
