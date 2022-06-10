@@ -4,10 +4,23 @@ class PeopleController < ApplicationController
       return render json: {errors: ["passwords must match"]}, status: :unprocessable_entity
     end
 
+    household_id = if params[:household_id].present?
+      params[:household_id]
+    else
+      name_array = params[:name].split("")
+      last_name = if name_array.length > 1
+        name_array.last.titlecase
+      else
+        nil
+      end
+
+      Household.generate_fake(last_name: last_name).id
+    end
+
     person = Person.create!(
       email_address: params[:email_address],
       name: params[:name],
-      household_id: params[:household_id],
+      household_id: household_id,
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
