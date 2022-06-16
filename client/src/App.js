@@ -224,6 +224,7 @@ function App() {
               type="text"
               id="household_id"
               value={household_id}
+              placeholder="Leave blank to generate a new household based on your last name"
               onChange={(e) => setHouseholdId(e.target.value)}
             />
 
