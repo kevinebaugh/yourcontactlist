@@ -106,7 +106,7 @@ function App() {
 
   return (
     <>
-      <h1><img id="header-icon" src="logo192.png" /> Contact List</h1>
+      <h1><img alt="Contact List logo" id="header-icon" src="logo192.png" /> Contact List</h1>
       <h3>Update your address and view your friends' updated addresses in one place.</h3>
       {person ? (
         <>
