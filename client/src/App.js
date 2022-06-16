@@ -106,6 +106,8 @@ function App() {
 
   return (
     <>
+      <h1><img id="header-icon" src="logo192.png" /> Contact List</h1>
+      <h3>Update your address and view your friends' updated addresses in one place.</h3>
       {person ? (
         <>
           <h1>Hello, {name}!</h1>
@@ -232,6 +234,15 @@ function App() {
           </form>
         </>
       )}
+      <footer>
+        Logo: <a
+          href="https://thenounproject.com/icon/stacked-envelopes-1130470/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Stacked Envelopes by Ben Davis, NounProject.com
+        </a>
+      </footer>
     </>
   );
 }
