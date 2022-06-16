@@ -7,7 +7,7 @@ class PeopleController < ApplicationController
     household_id = if params[:household_id].present?
       params[:household_id]
     else
-      name_array = params[:name].split("")
+      name_array = params[:name].split(" ")
       last_name = if name_array.length > 1
         name_array.last.titlecase
       else
