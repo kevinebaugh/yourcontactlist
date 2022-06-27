@@ -216,12 +216,6 @@ function App() {
                   const alreadyFollowed = followedIds.includes(household.id)
 
                   return !!!alreadyFollowed
-
-                  // if (alreadyFollowed === true) {
-                  //   return false
-                  // } else {
-                  //   return true
-                  // }
                 }).map((household) =>
                   <>
                     <form id={`all_household_id_${household.id}`} onSubmit={handleNewFollow}>
