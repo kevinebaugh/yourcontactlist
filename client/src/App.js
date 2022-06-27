@@ -187,8 +187,18 @@ function App() {
 
           {allHouseholds.length > 0 ? (
             <>
-              <h2>All households:</h2>
-                {allHouseholds.map((household) =>
+              <h2>Available households:</h2>
+                {allHouseholds.filter((household) => {
+                  const followedIds = followedHouseholds.map((household) => household.id)
+                  const alreadyFollowed = followedIds.includes(household.id)
+
+                  if (alreadyFollowed === true) {
+                    console.log(`${household.id} is already followed`)
+                    return false
+                  } else {
+                    return true
+                  }
+                }).map((household) =>
                   <>
                     <form id={`all_household_id_${household.id}`} onSubmit={handleNewFollow}>
                       <button type="submit">Follow the {household.name} household</button>
