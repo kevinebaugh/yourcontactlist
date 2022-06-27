@@ -39,6 +39,8 @@ function App() {
               setFollowedHouseholds(data.followings)
             }
           })
+        } else {
+          console.log("Signed out")
         }
       })
 
@@ -117,13 +119,34 @@ function App() {
       })
   }
 
+  function handleSignOut(e) {
+    e.preventDefault()
+
+    fetch('/signout', {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error)
+        window.location.reload(false);
+      })
+
+  }
+
   return (
     <>
       <h1><img alt="Contact List logo" id="header-icon" src="logo192.png" /> Contact List</h1>
       <h3>Update your address and view your friends' updated addresses in one place.</h3>
       {person ? (
         <>
-          <h1>Hello, {name}!</h1>
+          <h1>Hello, {name}!
+            <a id="sign-out-link" href="#" onClick={handleSignOut}>sign out</a>
+          </h1>
           <h2>Your address:</h2>
           <label htmlFor="line1">line1</label>
           <input
@@ -175,7 +198,7 @@ function App() {
                 {followedHouseholds.map((household) =>
                   <>
                     <li>{household.name}
-                      <span className="remove-x" id={`followed_household_id_${household.id}`} onClick={handleHouseholdRemoval} title="Remove this household"> ❌</span>
+                      <span className="x" id={`followed_household_id_${household.id}`} onClick={handleHouseholdRemoval} title="Remove this household"> ❌</span>
                     </li>
                   </>
                 )}
@@ -185,19 +208,20 @@ function App() {
             <h3>Your household doesn't currently follow any other households.</h3>
           )}
 
-          {allHouseholds.length > 0 ? (
+          {allHouseholds.length > followedHouseholds.length ? (
             <>
               <h2>Available households:</h2>
                 {allHouseholds.filter((household) => {
                   const followedIds = followedHouseholds.map((household) => household.id)
                   const alreadyFollowed = followedIds.includes(household.id)
 
-                  if (alreadyFollowed === true) {
-                    console.log(`${household.id} is already followed`)
-                    return false
-                  } else {
-                    return true
-                  }
+                  return !!!alreadyFollowed
+
+                  // if (alreadyFollowed === true) {
+                  //   return false
+                  // } else {
+                  //   return true
+                  // }
                 }).map((household) =>
                   <>
                     <form id={`all_household_id_${household.id}`} onSubmit={handleNewFollow}>

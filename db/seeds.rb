@@ -1,8 +1,10 @@
 puts "🌱 Starting to seed"
 
+LAST_NAMES_TO_CREATE = 15
+
 last_names = []
 
-5.times do
+LAST_NAMES_TO_CREATE.times do
   last_names.push(Faker::Name.unique.last_name)
 end
 

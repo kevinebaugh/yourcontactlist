@@ -58,6 +58,11 @@ form input {
   width: 25%;
 }
 
-.remove-x {
+.x {
   cursor: pointer;
+}
+
+#sign-out-link {
+  font-size: .4em;
+  padding: .5em;
 }
