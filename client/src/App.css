@@ -57,3 +57,7 @@ form input {
   display: block;
   width: 25%;
 }
+
+.remove-x {
+  cursor: pointer;
+}

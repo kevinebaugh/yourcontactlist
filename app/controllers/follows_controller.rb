@@ -24,4 +24,17 @@ class FollowsController < ApplicationController
 
     render json: household.followings, status: :ok
   end
+
+  def remove
+    household = Person.find_by(id: session[:person_id]).household
+    household_id_to_remove = params[:household_id_to_remove].presence
+
+    follow_to_remove = Follow.where(household_id: household.id, followed_household_id: household_id_to_remove).first
+
+    if follow_to_remove.delete
+      render json: household.followings, status: :ok
+    else
+      render json: {error: "Household not removed"}, status: :unprocessable_entity
+    end
+  end
 end

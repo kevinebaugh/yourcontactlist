@@ -26,7 +26,6 @@ function App() {
         if (response.ok) {
           response.json()
           .then(data => {
-            console.log(data)
             setName(data.name)
             setPerson(data.email_address)
             if (data.household_id) {
@@ -46,7 +45,6 @@ function App() {
     fetch('/households')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setAllHouseholds(data)
       })
   }, []);
@@ -84,9 +82,7 @@ function App() {
   function handleNewFollow(e) {
     e.preventDefault()
 
-    console.log(e.target.id)
-
-    const household_id_to_follow = e.target.id.replace("household_id_", "")
+    const household_id_to_follow = e.target.id.replace("all_household_id_", "")
 
     fetch('/update_follows', {
       method: "POST",
@@ -99,8 +95,25 @@ function App() {
     }).then(response => response.json())
       .then(data => {
         setFollowedHouseholds(data)
+      })
+  }
 
-        console.log("data", data)
+  function handleHouseholdRemoval(e) {
+    e.preventDefault()
+
+    const household_id_to_remove = e.target.id.replace("followed_household_id_", "")
+
+    fetch('/remove_follow', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        household_id_to_remove: household_id_to_remove
+      })
+    }).then(response => response.json())
+      .then(data => {
+        setFollowedHouseholds(data)
       })
   }
 
@@ -155,14 +168,15 @@ function App() {
             onChange={(e) => setCountry(e.target.value)}
           />
 
-
           {followedHouseholds.length > 0 ? (
             <>
               <h2>Your address book:</h2>
               <ul>
                 {followedHouseholds.map((household) =>
                   <>
-                    <li>{household.name}</li>
+                    <li>{household.name}
+                      <span className="remove-x" id={`followed_household_id_${household.id}`} onClick={handleHouseholdRemoval} title="Remove this household"> ❌</span>
+                    </li>
                   </>
                 )}
               </ul>
@@ -176,7 +190,7 @@ function App() {
               <h2>All households:</h2>
                 {allHouseholds.map((household) =>
                   <>
-                    <form id={`household_id_${household.id}`} onSubmit={handleNewFollow}>
+                    <form id={`all_household_id_${household.id}`} onSubmit={handleNewFollow}>
                       <button type="submit">Follow the {household.name} household</button>
                     </form>
                   </>

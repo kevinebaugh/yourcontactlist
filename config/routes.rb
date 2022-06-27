@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/me", to: "people#show"
 
   post "/update_follows", to: "follows#update"
+  post "/remove_follow", to: "follows#remove"
 
   get "/households", to: "households#index"
 
