@@ -58,7 +58,7 @@ form input {
   width: 25%;
 }
 
-.x {
+.x, button {
   cursor: pointer;
 }
 
