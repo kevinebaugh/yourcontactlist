@@ -81,6 +81,24 @@ function App() {
       })
   }
 
+  function handleSignin(e) {
+    e.preventDefault()
+
+    fetch("/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email_address: email_address,
+        password: password
+      }),
+    }).then(response => response.json())
+      .then(data => {
+        setPerson(data.email_address)
+      })
+  }
+
   function handleNewFollow(e) {
     e.preventDefault()
 
@@ -274,6 +292,28 @@ function App() {
 
             <button type="submit">Sign up</button>
           </form>
+
+          <h1>Or, sign in!</h1>
+          <form onSubmit={handleSignin}>
+            <label htmlFor="email_address">Email address</label>
+            <input
+              type="text"
+              id="email_address"
+              value={email_address}
+              onChange={(e) => setEmailAddress(e.target.value)}
+            />
+
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <button type="submit">Sign in</button>
+          </form>
+
         </>
       )}
       <footer>

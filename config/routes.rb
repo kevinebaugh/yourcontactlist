@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post "/signup", to: "people#create"
+  post "/signin", to: "sessions#create"
   delete "/signout", to: "sessions#destroy"
-  # post "/login", to: "sessions#create"
   get "/me", to: "people#show"
 
   post "/update_follows", to: "follows#update"
