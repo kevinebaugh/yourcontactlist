@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 
+import Address from "./Address";
+
 
 function App() {
   const [person, setPerson] = useState(null);
@@ -165,48 +167,20 @@ function App() {
           <h1>Hello, {name}!
             <a id="sign-out-link" href="#" onClick={handleSignOut}>sign out</a>
           </h1>
-          <h2>Your address:</h2>
-          <label htmlFor="line1">line1</label>
-          <input
-            type="text"
-            id="line1"
-            value={line1}
-            onChange={(e) => setLine1(e.target.value)}
-          />
-          <label htmlFor="line2">line2</label>
-          <input
-            type="text"
-            id="line2"
-            value={line2}
-            onChange={(e) => setLine2(e.target.value)}
-          />
-          <label htmlFor="city">city</label>
-          <input
-            type="text"
-            id="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <label htmlFor="state">state</label>
-          <input
-            type="text"
-            id="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-          <label htmlFor="postal_code">postal_code</label>
-          <input
-            type="text"
-            id="postal_code"
-            value={postal_code}
-            onChange={(e) => setPostalCode(e.target.value)}
-          />
-          <label htmlFor="country">country</label>
-          <input
-            type="text"
-            id="country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+          <h2>Your address</h2>
+          <Address
+            line1={line1}
+            line2={line2}
+            city={city}
+            state={state}
+            postal_code={postal_code}
+            country={country}
+            setLine1={setLine1}
+            setLine2={setLine2}
+            setCity={setCity}
+            setState={setState}
+            setPostalCode={setPostalCode}
+            setCountry={setCountry}
           />
 
           {followedHouseholds.length > 0 ? (
