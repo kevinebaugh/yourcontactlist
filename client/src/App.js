@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 
+import SignInUp from "./SignInUp";
 import Address from "./Address";
 import AddressBook from "./AddressBook";
 import AvailableHouseholds from "./AvailableHouseholds";
@@ -203,75 +204,19 @@ function App() {
 
         </>
       ) : (
-        <>
-          <h1>Sign up!</h1>
-          <form onSubmit={handleSignup}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-
-            <label htmlFor="email_address">Email address</label>
-            <input
-              type="text"
-              id="email_address"
-              value={email_address}
-              onChange={(e) => setEmailAddress(e.target.value)}
-            />
-
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <label htmlFor="password_confirmation">Password confirmation</label>
-            <input
-              type="password"
-              id="password_confirmation"
-              value={password_confirmation}
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
-            />
-
-            <label htmlFor="household_id">Household ID</label>
-            <input
-              type="text"
-              id="household_id"
-              value={household_id}
-              placeholder="Leave blank to generate a new household based on your last name"
-              onChange={(e) => setHouseholdId(e.target.value)}
-            />
-
-            <button type="submit">Sign up</button>
-          </form>
-
-          <h1>Or, sign in!</h1>
-          <form onSubmit={handleSignin}>
-            <label htmlFor="email_address">Email address</label>
-            <input
-              type="text"
-              id="email_address"
-              value={email_address}
-              onChange={(e) => setEmailAddress(e.target.value)}
-            />
-
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <button type="submit">Sign in</button>
-          </form>
-
-        </>
+        <SignInUp
+          handleSignup={handleSignup}
+          handleSignin name={name}
+          setName={setName}
+          email_address={email_address}
+          setEmailAddress={setEmailAddress}
+          password={password}
+          setPassword={setPassword}
+          password_confirmation={password_confirmation}
+          setPasswordConfirmation={setPasswordConfirmation}
+          household_id={household_id}
+          setHouseholdId={setHouseholdId}
+        />
       )}
       <footer>
         Logo: <a
