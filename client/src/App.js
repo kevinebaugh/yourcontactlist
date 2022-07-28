@@ -206,7 +206,8 @@ function App() {
       ) : (
         <SignInUp
           handleSignup={handleSignup}
-          handleSignin name={name}
+          handleSignin={handleSignin}
+          name={name}
           setName={setName}
           email_address={email_address}
           setEmailAddress={setEmailAddress}
