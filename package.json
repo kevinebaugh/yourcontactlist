@@ -4,6 +4,10 @@
   "engines": {
     "node": "16.x"
   },
+  "dependencies": {
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  },
   "scripts": {
     "build": "npm install --prefix client && npm run build --prefix client",
     "clean": "rm -rf public",

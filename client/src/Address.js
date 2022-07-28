@@ -2,9 +2,10 @@ import React from "react";
 
 import './App.css';
 
-function Address({ line1, line2, city, state, postal_code, country, setLine1, setLine2, setCity, setState, setPostalCode, setCountry,} ) {
+function Address({ line1, line2, city, state, postal_code, country, setLine1, setLine2, setCity, setState, setPostalCode, setCountry, updateAddress, deleteAddress} ) {
   return(
     <>
+      <h2>Your address</h2>
       <label htmlFor="line1">line1</label>
       <input
         type="text"
@@ -47,6 +48,8 @@ function Address({ line1, line2, city, state, postal_code, country, setLine1, se
         value={country}
         onChange={(e) => setCountry(e.target.value)}
       />
+      <button onClick={updateAddress}>Update address</button>
+      <button onClick={deleteAddress}>Delete address</button>
     </>
   )
 }

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get "/households", to: "households#index"
 
+  put "/update_address", to: "households#update_address"
+  delete "/delete_address", to: "households#delete_address"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
