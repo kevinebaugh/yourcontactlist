@@ -26,6 +26,7 @@ function App() {
 
   const [allHouseholds, setAllHouseholds] = useState([])
   const [followedHouseholds, setFollowedHouseholds] = useState([])
+  const [addressBook, setAddressBook] = useState([])
 
   useEffect(() => {
     fetch("/me")
@@ -33,6 +34,7 @@ function App() {
         if (response.ok) {
           response.json()
           .then(data => {
+            console.log("data", data)
             setName(data.name)
             setPerson(data.email_address)
             if (data.household_id) {
@@ -43,7 +45,8 @@ function App() {
               setState(data.address?.state)
               setPostalCode(data.address?.postal_code)
               setCountry(data.address?.country)
-              setFollowedHouseholds(data?.followings)
+              setFollowedHouseholds(data.followings)
+              setAddressBook(data.addresses)
             }
           })
         } else {
@@ -239,7 +242,7 @@ function App() {
           </Route>
           <Route exact path="/address-book">
             {followedHouseholds.length > 0 ? (
-              <AddressBook followedHouseholds={followedHouseholds} handleHouseholdRemoval={handleHouseholdRemoval} />
+              <AddressBook followedHouseholds={followedHouseholds} addressBook={addressBook} handleHouseholdRemoval={handleHouseholdRemoval} />
             ) : (
               <h3>Your household doesn't currently follow any other households. 👉 <a href="/available-addresses">Available addresses</a></h3>
             )}

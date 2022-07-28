@@ -36,7 +36,7 @@ class PeopleController < ApplicationController
     person = Person.find_by(id: session[:person_id])
 
     if person
-      render json: person, include: [:household, :address, :followings], status: :ok
+      render json: person, include: [:household, :address, :followings, :addresses], status: :ok
     else
       render json: { errors: ["🔒"] }, status: :unauthorized
     end
