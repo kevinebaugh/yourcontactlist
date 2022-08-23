@@ -23,7 +23,7 @@ function AddressBook({ followedHouseholds, addressBook, handleHouseholdRemoval }
       <ul>
       {followedHouseholds.map((household) =>
           <li key={household.id}>
-            <b>{household.name}</b>
+            <b>The {household.name} Household</b>
             <br/>{addressForHousehold(household.id)}
             <span className="x" id={`followed_household_id_${household.id}`} onClick={handleHouseholdRemoval} title="Remove this household"> ❌</span>
           </li>

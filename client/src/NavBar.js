@@ -35,8 +35,8 @@ function NavBar({ name, handleSignOut }) {
 
 
       <h1>Hello, {name}!
-        <a id="sign-out-link" href="/" onClick={handleSignOut}>sign out</a>
       </h1>
+        <a id="sign-out-link" href="/" onClick={handleSignOut}>sign out</a>
     </>
   )
 }

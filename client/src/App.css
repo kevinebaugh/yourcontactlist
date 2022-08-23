@@ -1,12 +1,12 @@
-/* Colors:
 
-#ff9f1c
-#ffbf69
-#ffffff
-#cbf3f0
-#2ec4b6
-
-*/
+/* Hack to get VS Code to show previews: */
+#colors {
+  color: #ff9f1c;
+  color: #ffbf69;
+  color: #ffffff;
+  color: #cbf3f0;
+  color: #2ec4b6;
+}
 
 .App {
   text-align: center;
@@ -62,11 +62,22 @@ form input {
   cursor: pointer;
 }
 
-#sign-out-link {
-  padding: .5em;
+a {
+  color: #2ec4b6;
+  transition: all 0.25s;
 }
 
-NavLink {
-  outline: 3px lightgreen solid;
-    outline-offset: 5px
+a {
+  display: inline-block;
+  padding: 0.4em 1em;
+  border: 0.1em solid #cbf3f0;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.5em;
+  text-decoration: none;
+  font-weight: 800;
+  text-align: center;
+}
+
+a:hover, a .active {
+  border: 0.1em solid #2ec4b6;
 }
