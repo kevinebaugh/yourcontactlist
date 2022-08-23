@@ -1,3 +1,22 @@
+## Your Contact List
+### [yourcontactlist.herokuapp.com](https://yourcontactlist.herokuapp.com/)
+
+#### The idea:
+
+  - Every holiday season, my wife and I text all of our friends and family to make sure that we have up-to-date addresses
+  - We also share our updated address if it changed
+  - Imagine the time saved if everyone had an always up-to-date address
+
+##### Wishlist:
+ - Address “staleness” 
+ - “Bump” a household for an address
+   - The magic here would be that only one bump would need to happen, then everyone would have the up-to-date address
+
+
+---
+
+Based on Flatiron project template, documented below:
+
 # Project Template: React/Rails API
 
 ## Description
