@@ -62,12 +62,12 @@ form input {
   cursor: pointer;
 }
 
-a {
+a, button {
   color: #2ec4b6;
   transition: all 0.25s;
 }
 
-a {
+a, button {
   display: inline-block;
   padding: 0.4em 1em;
   border: 0.1em solid #cbf3f0;
@@ -78,6 +78,6 @@ a {
   text-align: center;
 }
 
-a:hover, a .active {
+a:hover, a .active, button:hover, button .active {
   border: 0.1em solid #2ec4b6;
 }

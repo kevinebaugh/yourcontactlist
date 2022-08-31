@@ -200,20 +200,24 @@ function App() {
 
 
   if (!person) return (
-    <SignInUp
-      handleSignup={handleSignup}
-      handleSignin={handleSignin}
-      name={name}
-      setName={setName}
-      email_address={email_address}
-      setEmailAddress={setEmailAddress}
-      password={password}
-      setPassword={setPassword}
-      password_confirmation={password_confirmation}
-      setPasswordConfirmation={setPasswordConfirmation}
-      household_id={household_id}
-      setHouseholdId={setHouseholdId}
-    />
+    <>
+      <h1><img alt="Contact List logo" id="header-icon" src="logo192.png" /> Contact List</h1>
+      <h3>Update your address and view your friends' updated addresses in one place.</h3>
+      <SignInUp
+        handleSignup={handleSignup}
+        handleSignin={handleSignin}
+        name={name}
+        setName={setName}
+        email_address={email_address}
+        setEmailAddress={setEmailAddress}
+        password={password}
+        setPassword={setPassword}
+        password_confirmation={password_confirmation}
+        setPasswordConfirmation={setPasswordConfirmation}
+        household_id={household_id}
+        setHouseholdId={setHouseholdId}
+      />
+    </>
   )
 
   return (
