@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post "/remove_follow", to: "follows#remove"
 
   get "/households", to: "households#index"
+  post "households/new", to: "households#new"
+  delete "/households", to: "households#delete"
+  get "/sorted_households", to: "households#sorted_households"
 
   put "/update_address", to: "households#update_address"
   delete "/delete_address", to: "households#delete_address"

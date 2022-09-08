@@ -5,6 +5,15 @@ class HouseholdsController < ApplicationController
     render json: households, include: [:address, :people], status: :ok
   end
 
+  def new
+    household = Household.create(
+      name: params[:name],
+      address_id: params[:address_id]
+    )
+
+    render json: household, status: :ok
+  end
+
   def update_address
     address = Household.find(params[:household_id]).address
     address.line1 = params[:line1]
@@ -26,5 +35,15 @@ class HouseholdsController < ApplicationController
     render json: { errors: [] }
   rescue => error
     render json: { errors: [error.full_message] }
+  end
+
+  def delete
+    Household.find(params[:household_id]).destroy!
+  end
+
+  def sorted_households
+    households = Household.order(people_count: :desc).pluck(:people_count)
+
+    render json: households
   end
 end
