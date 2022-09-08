@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  before_action :authenticate, except: :create
+
   def create
     unless params[:password] == params[:password_confirmation]
       return render json: {errors: ["passwords must match"]}, status: :unprocessable_entity
@@ -35,10 +37,6 @@ class PeopleController < ApplicationController
   def show
     person = Person.find_by(id: session[:person_id])
 
-    if person
-      render json: person, include: [:household, :address, :followings, :addresses], status: :ok
-    else
-      render json: { errors: ["🔒"] }, status: :unauthorized
-    end
+    render json: person, include: [:household, :address, :followings, :addresses], status: :ok
   end
 end

@@ -1,4 +1,6 @@
 class FollowsController < ApplicationController
+  before_action :authenticate
+
   def update
     # Find Household based on user currently signed in
     household = Person.find_by(id: session[:person_id]).household
