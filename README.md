@@ -8,7 +8,7 @@
   - Imagine the time saved if everyone had an always up-to-date address
 
 ##### Wishlist:
- - Address “staleness” 
+ - Address “staleness”
  - “Bump” a household for an address
    - The magic here would be that only one bump would need to happen, then everyone would have the up-to-date address
 
